@@ -1,40 +1,40 @@
-function calcular() {
+function validar() {
   const distancia = document.getElementById("distancia").value;
   const consumo = document.getElementById("consumo").value;
   const precio = document.getElementById("precio").value;
-  const integrantes = document.getElementById("integrantes").value;
-  const porcentajes = document
-    .getElementById("porcentajes")
-    .value.split(",")
-    .map((p) => parseInt(p));
 
-  const gasolinaNecesaria = distancia / consumo;
-  const costoTotal = gasolinaNecesaria * precio;
-  const costoPorIntegrante = costoTotal / integrantes;
+  if (!distancia || !consumo || !precio) {
+    alert(
+      "Por favor, rellene los campos de distancia, consumo y precio de la gasolina"
+    );
+    return false;
+  }
 
-  const resultados = porcentajes.map((p) => (p * costoPorIntegrante) / 100);
-
-  const resultado = `El costo total del viaje es de ${costoTotal.toFixed(
-    2
-  )}€, y cada integrante debe pagar ${costoPorIntegrante.toFixed(
-    2
-  )}€. Los resultados son: ${resultados
-    .map((r) => r.toFixed(2) + "€")
-    .join(", ")}.`;
-
-  document.getElementById("resultado").innerHTML = resultado;
+  return true;
 }
 
-function agregarPorcentaje() {
-  var listaPorcentajes = document.getElementById("porcentajes-list");
-  var numeroIntegrantes = listaPorcentajes.getElementsByTagName("li").length;
-  var nuevoIntegrante = document.createElement("li");
-  nuevoIntegrante.innerHTML = `
-    <label for="porcentaje${numeroIntegrantes + 1}">Integrante ${
-    numeroIntegrantes + 1
-  }:</label>
-    <input type="text" id="porcentaje${
-      numeroIntegrantes + 1
-    }" name="porcentaje${numeroIntegrantes + 1}" placeholder="Ej: 20">`;
-  listaPorcentajes.appendChild(nuevoIntegrante);
+function calcular() {
+  if (validar()) {
+    const distancia = document.getElementById("distancia").value;
+    const consumo = document.getElementById("consumo").value;
+    const precio = document.getElementById("precio").value;
+    const integrantes = document.getElementById("integrantes").value;
+    const gasolinaNecesaria = distancia / consumo;
+    const costoTotal = gasolinaNecesaria * precio;
+
+    let resultadoTotal;
+
+    if (!integrantes) {
+      resultadoTotal = `El costo total del viaje es de ${costoTotal.toFixed(
+        2
+      )}€`;
+    } else {
+      const costoPorIntegrante = costoTotal / integrantes;
+      resultadoTotal = `El costo total del viaje es de ${costoTotal.toFixed(
+        2
+      )}€, y cada integrante debe pagar ${costoPorIntegrante.toFixed(2)}€.`;
+    }
+
+    document.getElementById("resultado").innerHTML = resultadoTotal;
+  }
 }
