@@ -24,3 +24,17 @@ function calcular() {
 
   document.getElementById("resultado").innerHTML = resultado;
 }
+
+function agregarPorcentaje() {
+  var listaPorcentajes = document.getElementById("porcentajes-list");
+  var numeroIntegrantes = listaPorcentajes.getElementsByTagName("li").length;
+  var nuevoIntegrante = document.createElement("li");
+  nuevoIntegrante.innerHTML = `
+    <label for="porcentaje${numeroIntegrantes + 1}">Integrante ${
+    numeroIntegrantes + 1
+  }:</label>
+    <input type="text" id="porcentaje${
+      numeroIntegrantes + 1
+    }" name="porcentaje${numeroIntegrantes + 1}" placeholder="Ej: 20">`;
+  listaPorcentajes.appendChild(nuevoIntegrante);
+}

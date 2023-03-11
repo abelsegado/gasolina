@@ -2,25 +2,58 @@
 <html>
   <head>
     <title>Calculadora de Gasolina</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
     <h1>Calculadora de Gasolina</h1>
     <form>
       <label for="distancia">Distancia del trayecto:</label>
-      <input type="number" id="distancia" name="distancia" required>
+      <input type="number" id="distancia" name="distancia" required />
 
       <label for="consumo">Consumo del vehículo (km/L):</label>
-      <input type="number" id="consumo" name="consumo" required>
+      <input type="number" id="consumo" name="consumo" required />
 
       <label for="precio">Precio de la gasolina:</label>
-      <input type="number" id="precio" name="precio" required>
+      <input type="number" id="precio" name="precio" required />
 
       <label for="integrantes">Número de integrantes:</label>
-      <input type="number" id="integrantes" name="integrantes" required>
+      <input type="number" id="integrantes" name="integrantes" required />
 
-      <label for="porcentajes">Porcentajes de la división:</label>
-      <input type="text" id="porcentajes" name="porcentajes" placeholder="ej: 30, 30, 40" required>
+      <label for="porcentajes"
+        >Porcentajes de la división (separados por comas):</label
+      >
+      <ul class="input-list" id="porcentajes-list">
+        <li>
+          <label for="porcentaje1">Integrante 1:</label>
+          <input
+            type="text"
+            id="porcentaje1"
+            name="porcentaje1"
+            placeholder="Ej: 30"
+          />
+        </li>
+        <li>
+          <label for="porcentaje2">Integrante 2:</label>
+          <input
+            type="text"
+            id="porcentaje2"
+            name="porcentaje2"
+            placeholder="Ej: 30"
+          />
+        </li>
+        <li>
+          <label for="porcentaje3">Integrante 3:</label>
+          <input
+            type="text"
+            id="porcentaje3"
+            name="porcentaje3"
+            placeholder="Ej: 40"
+          />
+        </li>
+      </ul>
+      <button type="button" onclick="agregarPorcentaje()">
+        Agregar integrante
+      </button>
 
       <button type="button" onclick="calcular()">Calcular</button>
     </form>
